@@ -1,0 +1,36 @@
+{% extends 'send_email_app/base.html' %}
+
+{% block content %}
+{% if message %}
+<div id="message-header" class="message-header {% if success %}bg-green{% else %}bg-red{% endif %}">
+    {{ message }}
+</div>
+{% endif %}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" name="name" required>
+    </div>
+    <div class="form-group">
+        <label for="designation">Designation:</label>
+        <input type="text" name="designation" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" name="email" required>
+    </div>
+    <button type="submit" class="btn">Create Employee</button>
+</form>
+<script>
+    const messageHeader = document.getElementById('message-header');
+    if (messageHeader) {
+        messageHeader.classList.add('slide-down');
+        setTimeout(() => {
+            messageHeader.classList.add('slide-up');
+            messageHeader.classList.remove('slide-down');
+        }, 1000);
+    }
+</script>
+{% endblock %}
+

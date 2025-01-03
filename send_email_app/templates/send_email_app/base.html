@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk Email Sender</title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">Bulk Email Sender</a>
+            <div class="menu-btn" id="menu-btn">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="menu" id="menu">
+                <li><a href="{% url 'employee_list' %}">Employee List</a></li>
+                <li><a href="{% url 'create_employee' %}">Create Employee</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="main__content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <script>
+        document.getElementById('menu-btn').addEventListener('click', function () {
+            document.getElementById('menu').classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>

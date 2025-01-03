@@ -1,0 +1,84 @@
+{% extends 'send_email_app/base.html' %}
+
+{% block content %}
+{% if message %}
+<div id="message-header" class="message-header {% if success %}bg-green{% else %}bg-red{% endif %}">
+    {{ message }}
+</div>
+{% endif %}
+<div class="employee__list__page">
+    <form method="get">
+        <input type="text" name="search" placeholder="Search by Name" class="search__input">
+        <button type="submit" class="btn">Search</button>
+    </form>
+
+    <form method="POST" action="{% url 'employee_emails' %}">
+        {% csrf_token %}
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr class="table__heading__desktop">
+                        <th><input type="checkbox" id="select-all"></th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th class="hover-dropdown">
+                            Designation
+                            <sub>
+                                <div class="dropdown-content">
+                                    {% for designation in designations %}
+                                        <a href="?designation={{ designation }}">{{ designation }}</a>
+                                    {% endfor %}
+                                </div>
+                            </sub>
+                        </th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for employee in employees %}
+                    <tr>
+                        <td>
+                            <input 
+                                type="checkbox" 
+                                name="emails" 
+                                value="{{ employee.f_Email}}" 
+                                class="checkboxes"
+                                data-label="Select"
+                                > <span class="checkmark"></span>
+                        </td>
+                        <td data-label="Name">{{ employee.f_Name }}</td>
+                        <td data-label="Email">{{ employee.f_Email }}</td>
+                        <td data-label="Designation">{{ employee.f_Designation }}</td>
+
+                        <td data-label="Action">
+                            <a href="{% url 'delete_employee' employee.f_Id %}" class="btn bg-red-btn">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <button type="submit" class="btn">View Emails</button>
+    </form>
+</div>
+<script>
+    const messageHeader = document.getElementById('message-header');
+    if (messageHeader) {
+        messageHeader.classList.add('slide-down');
+        setTimeout(() => {
+            messageHeader.classList.add('slide-up');
+            messageHeader.classList.remove('slide-down');
+        }, 2000);
+    }
+    const selectAllCheckbox = document.getElementById('select-all');
+    const checkboxes = document.querySelectorAll('.checkboxes');
+
+    if (selectAllCheckbox) {
+        selectAllCheckbox.addEventListener('change', function () {
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
+        });
+    }
+</script>
+{% endblock %}

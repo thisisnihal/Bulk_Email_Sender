@@ -1,0 +1,91 @@
+{% extends 'send_email_app/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="header">Welcome to Bulk Email Sender</h1>
+    <p class="sub-header">
+        Streamline your email campaigns and reach your audience effortlessly. Our platform makes it simple to send bulk emails with ease.
+    </p>
+
+    <div class="features">
+        <h2>Why Use Bulk Email Sender?</h2>
+        <ul>
+            <li>✔️ Send thousands of emails in just a few clicks</li>
+            <li>✔️ Customize your emails for a personal touch</li>
+            <li>✔️ Fast, reliable, and secure</li>
+        </ul>
+    </div>
+
+    <div class="cta">
+        <p>Ready to supercharge your email campaigns?</p>
+        <a href="{% url 'employee_list' %}" class="cta-button">Get Started</a>
+    </div>
+</div>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+    }
+    .container {
+        text-align: center;
+        padding: 50px 20px;
+    }
+    .header {
+        font-size: 3em;
+        color: #333;
+        margin-bottom: 10px;
+    }
+    .sub-header {
+        font-size: 1.3em;
+        color: #555;
+        margin-bottom: 30px;
+    }
+    .features {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        max-width: 600px;
+    }
+    .features h2 {
+        color: #007bff;
+        margin-bottom: 15px;
+    }
+    .features ul {
+        list-style: none;
+        padding: 0;
+        color: #555;
+        text-align: left;
+        margin: 0 auto;
+        max-width: 400px;
+    }
+    .features li {
+        margin-bottom: 10px;
+        font-size: 1.1em;
+    }
+    .cta {
+        margin-top: 30px;
+    }
+    .cta p {
+        font-size: 1.2em;
+        color: #333;
+        margin-bottom: 20px;
+    }
+    .cta-button {
+        text-decoration: none;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 5px;
+        font-size: 1.1em;
+        display: inline-block;
+    }
+    .cta-button:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% endblock %}
